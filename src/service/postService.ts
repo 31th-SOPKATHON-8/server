@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import { Post, PrismaClient } from "@prisma/client";
+import internal from "stream";
 const prisma = new PrismaClient();
 
 const getPost = async (postId: number) => {
@@ -16,7 +17,6 @@ const getPost = async (postId: number) => {
           select: {
             nickname: true,
             content: true,
-            Image: true,
             commentCreatedAt: true,
           },
         },
@@ -28,9 +28,27 @@ const getPost = async (postId: number) => {
     throw error;
   }
 };
+const createComment = async (
+  nickname: string,
+  content: string,
+  postId: number,
+  commentCreatedAt: string
+) => {
+  const data = await prisma.comment.create({
+    data: {
+      nickname,
+      content,
+      postId,
+      commentCreatedAt,
+    },
+  });
+
+  return data;
+};
 
 const postService = {
   getPost,
+  createComment,
 };
 
 export default postService;

@@ -34,4 +34,5 @@ export default {
   //
   GET_POST_SUCCESS: "게시글 불러오기 성공",
   NO_POST: "게시글이 없습니다.",
+  INTRODUCTION_SUCCESS: "댓글 생성 성공",
 };
