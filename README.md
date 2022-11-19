@@ -53,6 +53,7 @@
 
 # 📋 Model Diagram
 
+![image](https://user-images.githubusercontent.com/80771842/202855702-d49be22c-4962-4c64-b821-8dc40f850d97.png)
 
 # ✉️ Commit Messge Rules
 
@@ -140,9 +141,12 @@
  
 | 기능명 | 담당자 | 완료 여부 |
 | :-----: | :---: | :---: |
-| USER | 승빈 | 진행중 |
-| USER | 유진 | 진행중 |
-
+| USER | 승빈 |  ✅   |
+| POST | 유진 |  ✅   |
+| Brand | 승빈 |  ✅   |
+| Comment | 유진 |  ✅  |
+| Mark | 승빈 |  ✅  |
+| Category | 유진 |  ✅  |
 </div>
 </details>
 
