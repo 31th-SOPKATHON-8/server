@@ -14,59 +14,41 @@ model Information {
   LastTime         String           @db.VarChar(500)
   NormalPrice      String           @db.VarChar(500)
   SpecialPrice     String           @db.VarChar(500)
-  trailInformation trailInformation @relation(fields: [id], references: [id])
-}
-
-model User {
-  id       Int    @id(map: "user_pk") @unique(map: "user_id_uindex") @default(autoincrement())
-  userName String
-  age      Int?
-}
-
-model netflixMovie {
-  id                Int      @id(map: "netflixMovie_pk") @unique @default(autoincrement())
-  title             String
-  image             String
-  iconImage         String
-  runningTime       Int
-  watchTime         Int
-  epiNum            Int
-  currentNum        Int
-  detail            String
-  character         String[]
-  genre             String[]
-  seriesDescription String
-}
-
-model reservation_ticket {
-  id         Int     @id @default(autoincrement())
-  Departures String  @db.VarChar(50)
-  Arrivals   String  @db.VarChar(50)
-  StartDate  String  @db.VarChar(200)
-  LastDate   String  @db.VarChar(200)
-  Personnel  Int
-  content    String? @db.VarChar(500)
-}
-
-model ticketInformation {
-  Arrivals    String @db.VarChar(500)
-  CarNumber   Int
-  Departures  String @db.VarChar(500)
-  LastTime    String @db.VarChar(500)
-  Seat        Int
-  StartDate   String @db.VarChar(50)
-  StartTime   String @db.VarChar(500)
-  Station     Int
-  TimeTaken   String @db.VarChar(500)
-  TrainNumber Int
-  content     String @db.VarChar(500)
-  id          Int    @id(map: "ticketInformation_pk") @unique @default(autoincrement())
+  authorId         Int
+  trailInformation trailInformation @relation(fields: [authorId], references: [id])
 }
 
 model trailInformation {
-  id          Int          @id(map: "trailInformation_pk") @unique @default(autoincrement())
-  Departures  String       @db.VarChar(500)
-  Arrivals    String       @db.VarChar(500)
-  StartDate   String       @db.VarChar(50)
-  Information Information?
+  id          Int           @id(map: "trailInformation_pk") @default(autoincrement())
+  Departures  String        @db.VarChar(500)
+  Arrivals    String        @db.VarChar(500)
+  StartDate   String        @db.VarChar(50)
+  Information Information[]
+}
+
+model Brand {
+  brandId    Int    @id @default(autoincrement())
+  brandName  String @db.VarChar(100)
+  brandImage String @db.VarChar(200)
+  Post       Post[]
+}
+
+model Comment {
+  commentId        Int    @id @default(autoincrement())
+  nickname         String @db.VarChar(200)
+  content          String @db.VarChar(1000)
+  postId           Int
+  commentCreatedAt String @db.VarChar(300)
+  Post             Post   @relation(fields: [postId], references: [postId], onDelete: NoAction, onUpdate: NoAction, map: "postId")
+}
+
+model Post {
+  postId      Int       @id @unique @default(autoincrement())
+  postTitle   String    @db.VarChar(100)
+  postContent String    @db.VarChar(100)
+  brandId     Int
+  createdAt   String    @db.VarChar(100)
+  postImage   String    @db.VarChar(400)
+  Brand       Brand     @relation(fields: [brandId], references: [brandId], onDelete: NoAction, onUpdate: NoAction, map: "brandId")
+  Comment     Comment[]
 }
