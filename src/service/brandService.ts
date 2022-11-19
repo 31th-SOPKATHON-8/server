@@ -1,5 +1,5 @@
-import { PostDTO } from './../interfaces/PostDTO';
-import { BrandDTO } from './../interfaces/BrandDTO';
+import { PostDTO } from "./../interfaces/PostDTO";
+import { BrandDTO } from "./../interfaces/BrandDTO";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
@@ -30,7 +30,7 @@ const getBrandData = async (brandId: number) => {
 };
 
 const brandService = {
-    getBrandData
+  getBrandData,
 };
 
 export default brandService;
