@@ -7,15 +7,26 @@ const prisma = new PrismaClient();
 
 //* 유저 생성
 const getBrandData = async (brandId: number) => {
-  const data = await prisma.brand.findMany({
-    where: {
-      brandId: brandId,
-    },
-    include: {
-      Post: true,
-    },
-  });
-  return data;
+
+    const data = await prisma.brand.findMany({
+        where: {
+            brandId: brandId
+        },
+        include: {
+            Post: {
+                select: {
+                    postId: true,
+                    postTitle: true,
+                    postContent: true,
+                    createdAt: true,
+                    postImage: true,
+                    postComment: true,
+                    postLike: true,
+                },
+            }
+        }
+    });
+    return data;
 };
 
 const brandService = {

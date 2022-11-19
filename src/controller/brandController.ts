@@ -5,7 +5,6 @@ import brandService from '../service/brandService';
 
 const getBrandData = async (req: Request, res: Response) => {
     const { brandId } = req.params;
-    console.log(brandId);
 
     const data = await brandService.getBrandData(+brandId);
 
