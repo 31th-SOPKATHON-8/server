@@ -19,6 +19,7 @@
 ├── tsconfig.json
 ├── nodemone.json
 ├── package.json
+├── prisma
 └── src
     ├── constants
     ├── controller
@@ -53,6 +54,70 @@
 }
 
 ```
+
+# schema.prisma
+```
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Brand {
+  brandId    Int    @id @default(autoincrement())
+  brandName  String @db.VarChar(100)
+  brandImage String @db.VarChar(200)
+  Post       Post[]
+}
+
+model Comment {
+  commentId        Int    @id @default(autoincrement())
+  nickname         String @db.VarChar(200)
+  content          String @db.VarChar(1000)
+  postId           Int
+  commentCreatedAt String @db.VarChar(300)
+  Post             Post   @relation(fields: [postId], references: [postId], onDelete: NoAction, onUpdate: NoAction, map: "postId")
+}
+
+model Post {
+  postId      Int       @id @unique @default(autoincrement())
+  postTitle   String    @db.VarChar(100)
+  postContent String    @db.VarChar(1000)
+  brandId     Int
+  createdAt   String    @db.VarChar(100)
+  postImage   String?   @db.VarChar(400)
+  postLike    Int       @default(0)
+  postComment Int       @default(0)
+  Brand       Brand     @relation(fields: [brandId], references: [brandId], onDelete: NoAction, onUpdate: NoAction, map: "brandId")
+  Comment     Comment[]
+}
+
+model Information {
+  id               Int              @id(map: "Information_pk")
+  TrainName        String           @db.VarChar(500)
+  StartTime        String           @db.VarChar(500)
+  LastTime         String           @db.VarChar(500)
+  NormalPrice      String           @db.VarChar(500)
+  SpecialPrice     String           @db.VarChar(500)
+  authorId         Int
+  trailInformation trailInformation @relation(fields: [authorId], references: [id])
+}
+
+model trailInformation {
+  id          Int           @id(map: "trailInformation_pk") @default(autoincrement())
+  Departures  String        @db.VarChar(500)
+  Arrivals    String        @db.VarChar(500)
+  StartDate   String        @db.VarChar(50)
+  Information Information[]
+}
+
+```
+
+# server architecture
+![image](https://user-images.githubusercontent.com/72034311/202863136-919e8404-0fa7-4dc4-bc96-119b6e822290.png)
 
 # 📧API 명세서
 
@@ -163,10 +228,9 @@
 
 |               기능명               | Method | 담당자 | 완료 여부 |
 | :--------------------------------: | :----: | :----: | :-------: |
-| 게시글과 댓글 보여주기 |  GET   | `최승빈` |        |
-| 카테고리 종류만 보여주기 |  GET   | `한유진` |         |
-| 브랜드에 대한 기사들 보여주기 |  GET   | `최승빈` |         |
-| 댓글 작성 |  POST   | `한유진` |       |
+| 게시글과 댓글 보여주기 |  GET   | `최승빈` |     ✅   |
+| 브랜드에 대한 기사들 보여주기 |  GET   | `최승빈` |    ✅     |
+| 댓글 작성 |  POST   | `한유진` |   ✅    |
 
 </div>
 </details>
