@@ -53,7 +53,7 @@
 
 # 📋 Model Diagram
 
-![image](https://user-images.githubusercontent.com/80771842/202855702-d49be22c-4962-4c64-b821-8dc40f850d97.png)
+![image](https://user-images.githubusercontent.com/80771842/202857031-d56ecab0-19f7-4175-8077-449f5d5b358d.png)
 
 # ✉️ Commit Messge Rules
 
