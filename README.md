@@ -125,7 +125,7 @@ model trailInformation {
 
 # 📋 Model Diagram
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/853f70f8-e793-4337-8356-ab1b5f06fe33/Untitled.png)
+![image](https://user-images.githubusercontent.com/80771842/202871395-ec706854-3b9d-40cf-9979-c42e2431f068.png)
 
 # ✉️ Commit Messge Rules
 
