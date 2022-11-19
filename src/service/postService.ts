@@ -16,7 +16,6 @@ const getPost = async (postId: number) => {
           select: {
             nickname: true,
             content: true,
-            Image: true,
             commentCreatedAt: true,
           },
         },

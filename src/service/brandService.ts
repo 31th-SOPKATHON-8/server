@@ -13,7 +13,17 @@ const getBrandData = async (brandId: number) => {
             brandId: brandId
         },
         include: {
-            Post: true
+            Post: {
+                select: {
+                    postId: true,
+                    postTitle: true,
+                    postContent: true,
+                    createdAt: true,
+                    postImage: true,
+                    postComment: true,
+                    postLike: true,
+                },
+            }
         }
     });
     return data;

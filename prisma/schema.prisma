@@ -17,20 +17,40 @@ model Brand {
 model Comment {
   commentId        Int    @id @default(autoincrement())
   nickname         String @db.VarChar(200)
-  content          String @db.VarChar(1000)
-  Image            String
+  content          String @db.VarChar(30000)
   postId           Int
   commentCreatedAt String @db.VarChar(300)
   Post             Post   @relation(fields: [postId], references: [postId], onDelete: NoAction, onUpdate: NoAction, map: "postId")
 }
 
+model Information {
+  id               Int              @id(map: "Information_pk")
+  TrainName        String           @db.VarChar(500)
+  StartTime        String           @db.VarChar(500)
+  LastTime         String           @db.VarChar(500)
+  NormalPrice      String           @db.VarChar(500)
+  SpecialPrice     String           @db.VarChar(500)
+  authorId         Int
+  trailInformation trailInformation @relation(fields: [authorId], references: [id])
+}
+
+model trailInformation {
+  id          Int           @id(map: "trailInformation_pk") @default(autoincrement())
+  Departures  String        @db.VarChar(500)
+  Arrivals    String        @db.VarChar(500)
+  StartDate   String        @db.VarChar(50)
+  Information Information[]
+}
+
 model Post {
   postId      Int       @id @unique @default(autoincrement())
   postTitle   String    @db.VarChar(100)
-  postContent String    @db.VarChar(100)
+  postContent String    @db.VarChar(30000)
   brandId     Int
   createdAt   String    @db.VarChar(100)
-  postImage   String    @db.VarChar(400)
+  postImage   String?   @db.VarChar(400)
+  postLike    Int       @default(0)
+  postComment Int       @default(0)
   Brand       Brand     @relation(fields: [brandId], references: [brandId], onDelete: NoAction, onUpdate: NoAction, map: "brandId")
   Comment     Comment[]
 }
