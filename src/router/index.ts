@@ -1,12 +1,10 @@
 import { Router } from "express";
-import userRouter from "./userRouter";
-import trailRouter from "./trailRouter";
 import brandRouter from "./brandRouter";
+import postRouter from "./postRouter";
 
 const router: Router = Router();
 
-router.use("/user", userRouter);
-router.use("/trail", trailRouter);
 router.use("/brand", brandRouter);
+router.use("/post", postRouter);
 
 export default router;

@@ -1,2 +1,1 @@
-export { default as userController } from "./userController";
-export { default as trailController } from "./trailController";
+export { default as postController } from "./postController";

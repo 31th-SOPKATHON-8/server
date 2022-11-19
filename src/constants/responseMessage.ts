@@ -30,4 +30,8 @@ export default {
   // 서버 내 오류
   INTERNAL_SERVER_ERROR: "서버 내 오류",
   INVALID_PASSWORD: "잘못된 비밀번호입니다.",
+
+  //
+  GET_POST_SUCCESS: "게시글 불러오기 성공",
+  NO_POST: "게시글이 없습니다.",
 };
