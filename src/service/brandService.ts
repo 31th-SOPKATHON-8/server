@@ -8,9 +8,9 @@ const prisma = new PrismaClient();
 //* 유저 생성
 const getBrandData = async (brandId: number) => {
 
-    const data = await prisma.brand.findMany({
+    const data = await prisma.brand.findUnique({
         where: {
-            brandId: brandId
+            brandId
         },
         include: {
             Post: {
@@ -30,7 +30,7 @@ const getBrandData = async (brandId: number) => {
 };
 
 const brandService = {
-  getBrandData,
+    getBrandData,
 };
 
 export default brandService;
