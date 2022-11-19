@@ -8,10 +8,11 @@ datasource db {
 }
 
 model Brand {
-  brandId    Int    @id @default(autoincrement())
-  brandName  String @db.VarChar(100)
-  brandImage String @db.VarChar(200)
-  Post       Post[]
+  brandId          Int    @id @default(autoincrement())
+  brandName        String @db.VarChar(100)
+  brandImage       String @db.VarChar(200)
+  brandDescription String @db.VarChar(3000)
+  Post             Post[]
 }
 
 model Comment {
