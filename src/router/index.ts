@@ -1,10 +1,8 @@
 import { Router } from "express";
-import userRouter from "./userRouter";
-import trailRouter from "./trailRouter";
+import postRouter from "./postRouter";
 
 const router: Router = Router();
 
-router.use("/user", userRouter);
-router.use("/trail", trailRouter);
+router.use("/post", postRouter);
 
 export default router;
